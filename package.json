@@ -1,0 +1,27 @@
+{
+  "name": "basis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:site": "eleventy --watch --config=eleventy.config.js",
+    "dev:css": "postcss src/assets/styles/index.css -d _site/assets/styles -w",
+    "dev:server": "svrx --root _site --port 3000",
+    "dev": "NODE_ENV=development run-p dev:*",
+
+    "build:site": "eleventy --config=eleventy.config.js",
+    "build:css": "postcss src/assets/styles/index.css -d _site/assets/styles",
+    "build": "NODE_ENV=production run-s build:*"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@svrx/cli": "^1.1.2",
+    "@tailwindcss/jit": "^0.1.1",
+    "autoprefixer": "^10.2.5",
+    "esbuild": "^0.9.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3"
+  }
+}
