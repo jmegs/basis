@@ -1,0 +1,8 @@
+{{ $js := resources.Get "js/app.js" }}
+{{ $built := $js | js.Build (dict "minify" hugo.IsProduction) }}
+
+{{ if hugo.IsProduction }}
+{{ $built = $built | fingerprint }}
+{{ end }}
+
+<script src="{{ $built.RelPermalink }}" defer></script>
