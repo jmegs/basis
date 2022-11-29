@@ -1,10 +1,9 @@
+{{ $opts := dict "transpiler" "dartsass" }}
 {{ $scss := resources.Get "scss/index.scss" }}
-
-{{/* uses resources.Copy to change the filename from .scss to .css  */}}
-{{ $styles := $scss | postCSS | resources.Copy "css/style.css" }}
+{{ $styles := $scss | resources.ToCSS $opts }}
 
 {{ if hugo.IsProduction }}
-{{ $styles = $styles | fingerprint }}
+{{ $styles = $styles | minify | fingerprint }}
 {{ end }}
 
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
