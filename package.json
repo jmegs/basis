@@ -1,7 +1,13 @@
 {
 	"scripts": {
-		"dev": "hugo server -D",
-		"build": "hugo --gc --minify"
+		"clean": "rimraf public",
+		"sass": "sass assets/scss:assets/css",
+		"dev:sass": "npm run sass -- --watch",
+		"dev:hugo": "hugo server",
+		"prod:hugo": "hugo --gc --minify",
+		"prod:sass": "npm run sass -- --style=compressed",
+		"dev": "NODE_ENV=development npm-run-all clean sass --parallel dev:*",
+		"build": "NODE_ENV=production npm-run-all clean prod:sass prod:hugo"
 	},
 	"broswerslist": [
 		">0.5%",
@@ -10,11 +16,8 @@
 		"not op_mini all"
 	],
 	"devDependencies": {
-		"@csstools/postcss-sass": "^5.0.1",
-		"autoprefixer": "^10.4.12",
-		"cssnano": "^5.1.13",
-		"postcss": "^8.4.18",
-		"postcss-cli": "^10.0.0",
-		"postcss-scss": "^4.0.5"
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^4.1.2",
+		"sass": "^1.58.1"
 	}
 }
